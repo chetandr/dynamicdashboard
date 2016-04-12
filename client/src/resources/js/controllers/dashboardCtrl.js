@@ -11,9 +11,6 @@ app.controller('countCtrl',['$scope',function($scope){
     return input;
   };
     
-    
-    
-    
 }]);
 
 

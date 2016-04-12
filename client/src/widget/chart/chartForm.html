@@ -23,8 +23,8 @@ color:purple;
   <span class="caret"></span></button>
   <ul class="dropdown-menu">
     <li data-toggle="modal" data-target="#myModal1">PI Chart</li><br>
-       <li data-toggle="modal" data-target="#myModal1">Bar Graph</li><br>
-       <li data-toggle="modal" data-target="#myModal1">Line Graph</li><br>
+       <li data-toggle="modal" data-target="#myModal2">Bar Graph</li><br>
+       <li data-toggle="modal" data-target="#myModal3">Line Graph</li><br>
   </ul>
   </div>
    <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -37,9 +37,9 @@ color:purple;
           <h4 class="modal-title">Pie Chart</h4>
         </div>
         <div class="modal-body">
-            
+        Select the label attribute    
         <select>
-  <option ng-repeat="ele in dataLabel" >{{ele}}</option>
+    <option ng-repeat="ele in dataLabel" >{{ele}}</option>
     </select>
         
         </div>
@@ -60,14 +60,25 @@ color:purple;
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Pie Chart</h4>
+          <h4 class="modal-title">Bar chart</h4>
         </div>
         <div class="modal-body">
-            
+
+            Select the label attribute  
         <select>
   <option ng-repeat="ele in dataLabel" >{{ele}}</option>
     </select>
-        
+            <br>
+            Select the series attribute 
+        <select>
+  <option ng-repeat="ele in dataLabel" >{{ele}}</option>
+    </select>
+        <br>
+                Select the value attribute 
+        <select>
+  <option ng-repeat="ele in dataLabel" >{{ele}}</option>
+    </select>
+        <br>
         </div>
         
        <div class="modal-footer">

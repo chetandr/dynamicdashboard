@@ -1,0 +1,12 @@
+.modal-lg {
+	 max-width: 900px;
+}
+.card {
+	position: relative;
+	overflow-y: auto;
+	max-height: 400px;
+	padding: 15px;
+}
+.panel-body{
+	background-color:#6092e6;
+}

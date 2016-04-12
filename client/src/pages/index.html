@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="layoutApp">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Dynamic DashBoard</title>
+    <!-- Bootstrap Core CSS -->
+    <!-- Custom CSS -->
+    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="../bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="../js/js/angular.min.js"></script>
+    <script src="../js/js/angular-route.js"></script>
+</head>
+
+<body ng-controller="countCtrl">
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">Dynamic Dashboard</a>
+            </div>
+            <!-- /.navbar-header -->           
+            <!-- /.navbar-top-links -->
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        
+                        <div class="btn-group-vertical btn btn-lg" style="width:100%">
+                        <li>
+                            <button ng-click="count=4" class="btn btn-danger" style="width:100%"><i class="fa fa-dashboard fa-fw"></i> Four</button>
+                        </li>
+                        <li >
+                            <button ng-click="count=2" class="btn btn-danger" style="width:100%"><i class="fa fa-dashboard fa-fw"></i> Two</button>
+                        </li>
+                        <li >
+                          <button ng-click="count=1" class="btn btn-danger" style="width:100%"><i class="fa fa-dashboard fa-fw"></i> One</button>
+                        </li>
+                        </div>
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+    <content>
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Dashboard</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                
+                <div class="col-lg-6 col-md-6" ng-repeat="n in range(count)" >
+                    <div class="panel panel-primary" style="height: 250px;">
+                        <div class="panel-heading">
+                            <button class="glyphicon glyphicon-stats btn btn-lg" ng-click="dtype='chart'" ></button>
+                            <button class="glyphicon glyphicon-object-align-bottom btn btn-lg" ng-click="dtype='content'"></button>
+                            <button class="glyphicon glyphicon-menu-hamburger btn btn-lg" ng-click="dtype='form'"></button>
+                            <button class="glyphicon glyphicon-list btn btn-lg" ng-click="dtype='tables'"></button>
+                        </div>
+                        
+                        <a href="#"data-toggle="modal" data-target="#myModal" >
+                            
+                            <chart ng-if="dtype=='chart'">chart data</chart>
+                            <content ng-if="dtype=='content'">content data</content>
+                            <forms ng-if="dtype=='form'">form data</forms>
+                            <tables ng-if="dtype=='tables'">table data</tables>                        
+                        
+                        </a>
+                          <!-- Modal -->
+                          <div class="modal fade" id="myModal" role="dialog">
+                            <div class="modal-dialog">
+
+                              <!-- Modal content-->
+                              <div class="modal-content col-lg-12 col-md-12 col-xs-12" >
+                                <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal">&times;</button>                                  
+                                </div>
+                                <div class="modal-body">
+                                    <chart ng-if="dtype=='chart'">chart data</chart>
+                                    <content ng-if="dtype=='content'">content data</content>
+                                    <forms ng-if="dtype=='form'">form data</forms>
+                                    <tables ng-if="dtype=='tables'">table data</tables>
+                                </div>                                
+                              </div>
+
+                            </div>
+                          </div>             
+                    </div>                    
+                </div>
+            </div>
+            <!-- /.row -->
+        </div>            
+    </content>
+    </div>
+    <script src="../js/app/app.js"></script>
+    <script src="../js/controllers/dashboardCtrl.js"></script>
+</body>
+
+</html>

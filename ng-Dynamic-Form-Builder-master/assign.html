@@ -1,0 +1,203 @@
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width",initial-scale=1.0">
+	<title> </title>
+	<script src="js/angular.min.js"></script>
+	  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+</head>
+<body 	>
+
+
+	<div ng-controller="formCtrl">
+	 <div class="jumbotron text-center">
+			<h1>AngularJS</h1>      
+		</div>
+	
+	<div class="container">
+	<div class="text-right">
+		  Search: <input  ng-model="query">
+	
+		  <!-- Trigger the modal with a button -->
+		  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add Details</button>
+</div>
+		  <!-- Modal -->
+		  <div class="modal fade" id="myModal" role="dialog">
+			<div class="modal-dialog">
+			
+			  <!-- Modal content-->
+			  <div class="modal-content">
+				<div class="modal-header">
+				  <button type="button" class="close" data-dismiss="modal">&times;</button>
+				  <h4 class="modal-title">User Details</h4>
+				</div>
+				<div class="modal-body">
+				<form  name="userForm" ng-submit="addItem()">
+						  First name:<br>
+						<input type="text" name="firstname" placeholder="firstname" ng-model="firstname"><br>
+						Last name:<br>
+						<input type="text" name="lastname" placeholder="lastname" ng-model="lastname"><br><br>
+						Age:<br>
+						<input type="text" name="age" placeholder="age"><br><br>
+						Country:<br>
+						<input type="text" name="Country" placeholder="Country" ng-model="Country"><br><br>
+						Address:<br>
+						<input type="text" name="Address" placeholder="Address" ng-model="Address"><br><br>
+						Phone:<br>
+						<input type="text" name="Phone" placeholder="Phone" ng-model="Phone"><br><br>
+						
+				</form>
+				</div>
+				<div class="modal-footer">
+				  <button type="button" class="btn btn-success" data-dismiss="modal" ng-click="addItem()">Add</button>
+				   <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+				</div>
+			  </div>
+			  
+			</div>
+		  </div>
+		  
+		</div>
+	
+	
+	
+
+
+		 
+	
+	
+	
+			<table  width="200" class="table table-bordered table-hover table-responsive">
+				<thead>
+					
+						
+							<th ng-repeat="j in Columns">{{j}}</th>
+					
+					</thead>
+					<tbody >
+						<tr ng-if="query" ng-repeat="element in Data | filter:query">
+							<td  ng-repeat="x in element ">{{x}}</td>
+							<td><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal1" ng-click="editinfo($index)">update</td>
+							
+							 <!-- Modal -->
+		  <div class="modal fade" id="myModal1" role="dialog">
+			<div class="modal-dialog">
+			
+			  <!-- Modal content-->
+			  <div class="modal-content">
+				<div class="modal-header">
+				  <button type="button" class="close" data-dismiss="modal">&times;</button>
+				  <h4 class="modal-title">Edit Details</h4>
+				</div>
+				<div class="modal-body">
+				<form  name="userForm" ng-submit="addItem()">
+						  First name:<br>
+						<input type="text" id="firstname" name="firstname"  placeholder={{ele[0]}} ng-model="fname"  ><br>
+						Last name:<br>
+						<input type="text" name="lastname"  placeholder={{ele[1]}}  ng-model="lname"><br><br>
+						Age:<br>
+						<input type="text" name="age"  placeholder={{ele[2]}} ng-model="age"><br><br>
+						Country:<br>
+						<input type="text" name="Country"  placeholder={{ele[3]}} ng-model="country"><br><br>
+						Address:<br>
+						<input type="text" name="Address"  placeholder={{ele[4]}} ng-model="address"><br><br>
+						Phone:<br>
+						<input type="text" name="Phone"  placeholder={{ele[5]}} ng-model="phone"><br><br>
+					
+				</form>
+				</div>
+				<div class="modal-footer">
+				  <button type="button" class="btn btn-success" data-dismiss="modal" ng-click="editItem()">update</button>
+				   <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+				</div>
+			  </div>
+			  
+			</div>
+		  </div>
+		  
+							<td><button class="btn btn-danger" ng-click="remove($index)">remove</td>
+							
+						</tr>
+					</tbody>
+			</table>
+	</div>
+	
+	
+	<script type="text/javascript">
+	
+	var myApp=angular.module('myApp',[]);
+	
+	 
+	myApp.controller('formCtrl', ['$scope','$http',function($scope, $http) {
+    $http.get("sampleuser.json")
+    .then(function(response) {
+        $scope.Columns = response.data.cols;
+        $scope.Data = response.data.data;
+		console.log($scope.Columns.length);
+		$scope.length = $scope.Columns.length;
+		});
+		
+		
+		
+		
+		
+		
+		$scope.addItem=function()
+		{
+		
+		 var obj=[];
+		 
+       obj.push($scope.firstname);
+       obj.push($scope.lastname);
+       obj.push($scope.age);
+       obj.push($scope.Country);
+       obj.push($scope.Address);
+       obj.push($scope.Phone);
+	   $scope.Data.push(obj);
+		
+		
+		
+		};
+		
+		
+		
+		$scope.remove = function($index) {
+                $scope.Data.splice($index,1);
+				
+		};
+		$scope.editinfo=function($index)
+		{
+			
+			var arr = $scope.Data[$index];
+			$scope.fname = arr[0];
+		    $scope.lname = arr[1];
+		    $scope.age = arr[2];
+		    $scope.country = arr[3];
+		    $scope.address = arr[4];
+		    $scope.phone = arr[5];
+			$scope.i=$index;
+			
+		};
+		
+		$scope.editItem = function(){
+      var obj=[];
+  obj.push($scope.fname);
+  obj.push($scope.lname);
+  obj.push($scope.age);
+  obj.push($scope.country);
+  obj.push($scope.address);
+  obj.push($scope.phone);
+  $scope.Data.splice($scope.i,1,obj); 
+	  
+	  }
+		
+		
+		}]);
+		
+		
+	</script>
+</body>
+</html>

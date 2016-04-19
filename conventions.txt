@@ -2,3 +2,6 @@ For developers:
 	1.Choose your module from widget folder
 	2.Controller ends with ctrl,service ends with serv, directive ends with dire
 	3.Team members commit to team leads branch
+
+	4.branch content widget
+		-1.

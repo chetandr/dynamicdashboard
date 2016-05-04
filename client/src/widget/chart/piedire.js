@@ -7,6 +7,7 @@ function createPieChart() {
       return {
         scope: true,
         controller: function($scope) {
+       //     alert(dataService.getData());
           $scope.labels =angular.copy(pieLabels);
           $scope.data =angular.copy(pieData);
           },

@@ -1,1 +1,1 @@
-var chartApp = angular.module("chartApp", [ ]);
+var chartApp = angular.module("chartApp", ["chart.js"]);
